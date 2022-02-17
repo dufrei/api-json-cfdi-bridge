@@ -6,13 +6,13 @@ RUN set -e \
     && apt-get dist-upgrade -y \
     && apt-get install -y supervisor zip unzip git wget \
     && wget -q -O - https://packages.sury.org/php/README.txt | bash \
-    && apt-get install -y git php-cli composer php-zip php-mbstring php-xml php-curl php-soap libsaxonb-java default-jre-headless \
+    && apt-get install -y git php8.0-cli composer php8.0-zip php8.0-mbstring php8.0-xml php8.0-curl php8.0-soap libsaxonb-java default-jre-headless \
     && apt-get -y autoremove \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 ARG GIT_SOURCE=1
-ARG GIT_REPO="https://github.com/dufrei/api-json-cfdi-bridge.git"
+ARG GIT_REPO="https://github.com/dufreicom/api-json-cfdi-bridge.git"
 ARG GIT_BRANCH="main"
 
 COPY . /opt/sources
