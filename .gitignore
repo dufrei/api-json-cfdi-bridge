@@ -4,3 +4,4 @@
 composer.lock
 run.sh
 resources/
+data
