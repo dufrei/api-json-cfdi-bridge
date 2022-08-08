@@ -11,18 +11,19 @@ RUN set -e \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-ARG GIT_SOURCE=1
-ARG GIT_REPO="https://github.com/dufrei/api-json-cfdi-bridge.git"
+ARG GIT_SOURCE=0
+ARG GIT_REPO="https://github.com/dufreicom/api-json-cfdi-bridge.git"
 ARG GIT_BRANCH="main"
 
 COPY . /opt/sources
 
 RUN set -e && \
-    if [ "$GIT_SOURCE" -eq 1 ]; then \
-        git clone -b "${GIT_BRANCH}" "${GIT_REPO}" /opt/api-json-cfdi-bridge; \
-    else \
-        cp -r /opt/sources/ /opt/api-json-cfdi-bridge; \
-    fi
+    cp -r /opt/sources/ /opt/api-json-cfdi-bridge; 
+    # if [ "$GIT_SOURCE" -eq 1 ]; then \
+    #     git clone -b "${GIT_BRANCH}" "${GIT_REPO}" /opt/api-json-cfdi-bridge; \
+    # else \
+    #     cp -r /opt/sources/ /opt/api-json-cfdi-bridge; \
+    # fi
 
 WORKDIR /opt/api-json-cfdi-bridge
 
