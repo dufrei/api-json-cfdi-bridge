@@ -28,7 +28,8 @@ class PreCfdiSigner
     public function __construct(DOMDocument $document, XmlResolver $xmlResolver, XsltBuilderInterface $xsltBuilder)
     {
         $xpath = new DOMXPath($document, false);
-        $xpath->registerNamespace('cfdi', 'http://www.sat.gob.mx/cfd/3');
+        //$xpath->registerNamespace('cfdi', 'http://www.sat.gob.mx/cfd/3');
+        $xpath->registerNamespace('cfdi', 'http://www.sat.gob.mx/cfd/4');
 
         $this->document = $document;
         $this->xpath = $xpath;
@@ -71,7 +72,8 @@ class PreCfdiSigner
     public function buildSourceString(): string
     {
         try {
-            $xsltLocation = $this->xmlResolver->resolve(CfdiDefaultLocations::XSLT_33);
+            //$xsltLocation = $this->xmlResolver->resolve(CfdiDefaultLocations::XSLT_33);
+            $xsltLocation = $this->xmlResolver->resolve(CfdiDefaultLocations::XSLT_40);
             return $this->xsltBuilder->build($this->document->saveXML() ?: '', $xsltLocation);
         } catch (Throwable $exception) {
             throw new UnableToSignXmlException('Unable to build source string', $exception);
